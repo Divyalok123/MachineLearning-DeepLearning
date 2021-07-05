@@ -35,12 +35,11 @@ with open(filepath, "r") as f:
                 #     i+=1
                 if (len(fields) == 3):
                     (action, URL, protocol) = fields
-                    if (URL.endswith("/") and 'feed' not in URL):
-                        if (action == 'GET'):
-                            if URL in URLCounts:
-                                URLCounts[URL] = URLCounts[URL] + 1
-                            else:
-                                URLCounts[URL] = 1
+                    if (URL.endswith("/") and 'feed' not in URL and action == 'GET'):
+                        if URL in URLCounts:
+                            URLCounts[URL] = URLCounts[URL] + 1
+                        else:
+                            URLCounts[URL] = 1
 
 results = sorted(URLCounts, key=lambda i: int(URLCounts[i]), reverse=True)
 
