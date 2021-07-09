@@ -12,21 +12,25 @@ num_features = 784
 
 #preparing the data
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+# print(x_train.shape)
+
 x_train, x_test = np.array(x_train, np.float32), np.array(x_test, np.float32)
 x_train, x_test = x_train.reshape([-1, num_features]), x_test.reshape([-1, num_features])
+# print(x_train.shape)
+
 x_train, x_test = x_train / 255., x_test / 255.
 
 
 #function to show samples
-def show_samples(num):
+def show_sample(num):
     label = y_train[num]
     image = x_train[num].reshape([28, 28])
     plt.title('Sample no. %d, Label %d' % (num, label))
 
     plt.imshow(image, cmap=plt.get_cmap('gray_r'))
-    plt.savefig('images/image_1.jpg')
+    plt.savefig('fig/image_1.jpg')
 
-# show_samples(991)
+# show_sample(991)
 
 # just to see what the neural network will working on
 images = x_train[0].reshape([1, 784])
@@ -35,7 +39,7 @@ for i in range(1, 500):
     images = np.concatenate((images, x_train[i].reshape([1, 784])))
 
 # plt.imshow(images, cmap=plt.get_cmap('gray_r'))
-# plt.savefig('images/image_2.jpg')
+# plt.savefig('fig/image_2.jpg')
 
 #hyper-parameters
 learning_rate = 0.003
